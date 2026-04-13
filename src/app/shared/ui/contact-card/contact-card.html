@@ -1,0 +1,24 @@
+<div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition group" [appStaleAlert]="data().lastContactDate">
+  <div class="flex justify-between items-start">
+    <div class="flex gap-4 items-center">
+      <div class="w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-lg">
+        {{ data().name.charAt(0) }}
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg text-slate-800">{{ data().name }}</h3>
+        <p class="text-sm text-slate-500">{{ data().title }} @ {{ data().company }}</p>
+      </div>
+    </div>
+    <button (click)="onEdit.emit(data().id)" class="text-indigo-600 text-sm opacity-0 group-hover:opacity-100 transition px-2 py-1 bg-indigo-50 rounded">
+      编辑
+    </button>
+  </div>
+  <div class="mt-4 pt-4 border-t border-slate-50 flex justify-between items-center text-xs">
+    <div class="flex gap-2">
+      @for (tag of data().tags; track tag) {
+        <span class="bg-slate-100 text-slate-600 px-2 py-1 rounded-md">{{ tag }}</span>
+      }
+    </div>
+    <span class="text-slate-400">上次联系: {{ data().lastContactDate | timeAgo }}</span>
+  </div>
+</div>
